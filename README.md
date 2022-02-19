@@ -14,7 +14,7 @@ Instalação do Docker
 Depois de instalar o Docker, utilize os comandos:
 - $ docker compose build
 - $ docker compose run --rm jsapi go mod init github.com/jonathanschmittblog/jsapi
-- $ docker compose run --rm app air init
+- $ docker compose run --rm jsapi air init
 - $ docker compose up
 
 Endspoints disponíveis:
