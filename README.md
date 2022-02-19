@@ -22,5 +22,5 @@ Endspoints disponíveis:
 - Put: \pessoas\:nome_da_pessoa
 - Delete: \pessoas\:nome_da_pessoa
 
-- Estrutura da Pessoa:
-{"nome": "", "sexo": "", "peso": 0, "altura": 0, "imc": 0}
+Estrutura da Pessoa:
+- {"nome": "", "sexo": "", "peso": 0, "altura": 0, "imc": 0}
