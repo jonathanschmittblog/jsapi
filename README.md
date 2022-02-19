@@ -1,24 +1,24 @@
-# jsapi
-Modelo de API Go + MongoDB + RabbitMQ
+# JSAPI | Modelo de API Go + MongoDB + RabbitMQ + Docker
 
 Olá, seja bem-vindo a minha API Go.
 
-Requisitos de funcionamento:
-- Um banco de dados MongoDB
-- Um server RabbitMQ
-- Configurar as variáveis de ambiente
+A aplicação está configurada para rodar em com Docker.
 
-Exêmplo de configuração das variáveis de ambiente:
-- JSAPI_HOST=http://localhost
-- JSAPI_PORT=3000
-- JSAPI_RABBITMQ_DIAL=amqp://guest:guest@localhost:5672/
-- JSAPI_MONGODB_USER=root
-- JSAPI_MONGODB_PASS=MySecret
-- JSAPI_MONGODB_DB_NAME=mydbname
+Instalação do Docker
+- Ubuntu - https://docs.docker.com/install/linux/docker-ce/ubuntu/
+- Debian - https://docs.docker.com/install/linux/docker-ce/debian/
+- Windows - https://docs.docker.com/docker-for-windows/install/
+- Mac - https://docs.docker.com/docker-for-mac/install/
+
+Depois de instalar o Docker, utilize os comandos:
+- $ docker compose build
+- $ docker compose run --rm jsapi go mod init github.com/jonathanschmittblog/jsapi
+- $ docker compose run --rm jsapi air init
+- $ docker compose up
 
 Endspoints disponíveis:
-- Get: \pessoas\:nome_da_pessoa
 - Post: \pessoas
+- Get: \pessoas\:nome_da_pessoa
 - Put: \pessoas\:nome_da_pessoa
 - Delete: \pessoas\:nome_da_pessoa
 
