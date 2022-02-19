@@ -19,9 +19,7 @@ func GetDatabase() *mongo.Database {
 }
 
 func connect() error {
-	clientOptions := options.Client().ApplyURI("mongodb+srv://" + os.Getenv("JSAPI_MONGODB_USER") + ":" + 
-															      os.Getenv("JSAPI_MONGODB_PASS") + "@cluster.yrdhq.mongodb.net/" + 
-					                                              os.Getenv("JSAPI_MONGODB_DB_NAME") + "?retryWrites=true&w=majority")
+	clientOptions := options.Client().ApplyURI(os.Getenv("JSAPI_MONGODB_URI"))
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, clientOptions)
