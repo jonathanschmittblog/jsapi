@@ -21,3 +21,22 @@ JSAPI_MONGODB_USER=root
 JSAPI_MONGODB_PASS=MySecret
 
 JSAPI_MONGODB_DB_NAME=mydbname
+
+Endspoints disponíveis:
+- Get
+\pessoas\:nome_da_pessoa
+- Post
+\pessoas
+- Put
+\pessoas\:nome_da_pessoa
+- Delete
+\pessoas\:nome_da_pessoa
+
+- Estrutura da Pessoa:
+{
+    "nome": "Seu nome",
+    "sexo": "M",
+    "peso": 0,
+    "altura": 0,
+    "imc": 0
+}
