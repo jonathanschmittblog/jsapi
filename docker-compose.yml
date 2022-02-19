@@ -1,19 +1,29 @@
 version: "3.9"
 services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   mongodb:
     container_name: jsapidb
     image: mongo
     ports:
-      - 27017:27017
+      - 27017:27019
     volumes:
       - ./mongo-volume:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: "root"
       MONGO_INITDB_ROOT_PASSWORD: "Secret123"
       MONGO_INITDB_DATABASE: "jsapi"
-  app:
+    restart: always
+  jsapi:
     depends_on:
       - mongodb
+      - rabbitmq
     build:
       dockerfile: Dockerfile
       context: .
@@ -23,7 +33,8 @@ services:
     environment:
       JSAPI_HOST: "http://localhost"
       JSAPI_PORT: "3000"
-      JSAPI_RABBITMQ_DIAL: "amqp://guest:guest@localhost:5672/"
-      JSAPI_MONGODB_URI: "mongodb://root:Secret123@127.0.0.1:27017/jsapidb"
+      JSAPI_RABBITMQ_DIAL: "amqp://guest:guest@rabbitmq:5672/"
+      JSAPI_MONGODB_URI: "mongodb://root:Secret123@mongodb:27017/?retryWrites=true&w=majority"
+      JSAPI_MONGODB_DB_NAME: "jsapidb"
     ports:
       - "3000:3000"
