@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"jsapi/db"
-	"jsapi/utils"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -39,7 +38,7 @@ func (p *Pessoa) createIndex() error {
 			Options: options.Index().SetUnique(true),
 		},
 	)
-	return utils.HandleError(err)
+	return err
 }
 
 // Adiciona uma pessoa
@@ -48,7 +47,7 @@ func (p *Pessoa) Create() error {
 		return errors.New("nome da pessoa não informado para edição")
 	}
 	_, err := p.collection.InsertOne(context.TODO(), p)
-	return utils.HandleError(err)
+	return err
 }
 
 // Faz a leitura de uma pessoa a partir do nome
@@ -68,7 +67,7 @@ func (p *Pessoa) Update(nome string, newPessoa *Pessoa) (*Pessoa, error) {
 	filtro := getFilter(nome)
 	dados := bson.D{primitive.E{Key: "$set", Value: &newPessoa}}
 	_, err := p.collection.UpdateOne(context.TODO(), filtro, dados)
-	return newPessoa, utils.HandleError(err)
+	return newPessoa, err
 }
 
 // Exclui uma pessoa
@@ -78,7 +77,7 @@ func (p *Pessoa) Delete(nome string) (int64, error) {
 	}
 	filtro := getFilter(nome)
 	result, err := p.collection.DeleteOne(context.TODO(), filtro)
-	return result.DeletedCount, utils.HandleError(err)
+	return result.DeletedCount, err
 }
 
 // Monta o filtro com o nome da pessoa para utilizar no CRUD

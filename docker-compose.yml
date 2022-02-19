@@ -1,9 +1,29 @@
 version: "3.9"
 services:
+  mongodb:
+    container_name: jsapidb
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-volume:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "Secret123"
+      MONGO_INITDB_DATABASE: "jsapi"
   app:
+    depends_on:
+      - mongodb
     build:
       dockerfile: Dockerfile
       context: .
       target: dev
     volumes:
       - .:/opt/app/api
+    environment:
+      JSAPI_HOST: "http://localhost"
+      JSAPI_PORT: "3000"
+      JSAPI_RABBITMQ_DIAL: "amqp://guest:guest@localhost:5672/"
+      JSAPI_MONGODB_URI: "mongodb://root:Secret123@127.0.0.1:27017/jsapidb"
+    ports:
+      - "3000:3000"

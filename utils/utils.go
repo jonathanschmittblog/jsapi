@@ -3,27 +3,10 @@ package utils
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
-
-	"go.mongodb.org/mongo-driver/mongo"
 )
-
-func HandleError(err error) error {
-	if err == nil {
-		return nil
-	}
-	mongoDBError := err.(mongo.WriteException)
-	errorCode := mongoDBError.WriteErrors[0].Code
-	switch errorCode {
-	case 11000:
-		return errors.New("registro duplicado")
-	default:
-		return errors.New(mongoDBError.WriteErrors[0].Message)
-	}
-}
 
 func CheckError(err error, msg string) {
 	if err != nil {
