@@ -21,6 +21,7 @@ services:
       MONGO_INITDB_DATABASE: "jsapi"
     restart: always
   jsapi:
+    container_name: jsapi
     depends_on:
       - mongodb
       - rabbitmq
