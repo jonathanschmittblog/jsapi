@@ -12,9 +12,12 @@ Instalação do Docker
 
 Depois de instalar o Docker, utilize os comandos:
 - $ docker compose build
-- $ docker compose run --rm jsapi go mod init github.com/jonathanschmittblog/jsapi
-- $ docker compose run --rm jsapi air init
+- $ docker compose run --rm api go mod init github.com/jonathanschmittblog/jsapi
+- $ docker compose run --rm api air init
 - $ docker compose up
+
+Para rodar os testes unitários, utilize os comandos:
+- docker exec api go test -run ./...
 
 Endspoints disponíveis:
 - Post: \pessoas
