@@ -17,14 +17,10 @@ Exêmplo de configuração das variáveis de ambiente:
 - JSAPI_MONGODB_DB_NAME=mydbname
 
 Endspoints disponíveis:
-- Get
---\pessoas\:nome_da_pessoa
-- Post
---\pessoas
-- Put
---\pessoas\:nome_da_pessoa
-- Delete
---\pessoas\:nome_da_pessoa
+- Get: \pessoas\:nome_da_pessoa
+- Post: \pessoas
+- Put: \pessoas\:nome_da_pessoa
+- Delete: \pessoas\:nome_da_pessoa
 
 - Estrutura da Pessoa:
---{"nome": "", "sexo": "", "peso": 0, "altura": 0, "imc": 0}
+{"nome": "", "sexo": "", "peso": 0, "altura": 0, "imc": 0}
