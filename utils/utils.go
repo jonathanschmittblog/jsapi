@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
 )
 
@@ -73,4 +74,11 @@ func HttpDelete(url string) int {
 		return 0
 	}
 	return resp.StatusCode
+}
+
+func CalculaImc(peso float64, altura float64) float64 {
+	if peso == 0 || altura == 0 {
+		return 0
+	}
+	return peso / (math.Pow(altura, 2))
 }

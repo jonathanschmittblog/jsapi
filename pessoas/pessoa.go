@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"jsapi/db"
+	"jsapi/utils"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -14,9 +15,9 @@ import (
 type Pessoa struct {
 	Nome   string `json:"nome"`
 	Sexo   string `json:"sexo"`
-	Peso   float32 `json:"peso"`
-	Altura float32 `json:"altura"`
-	Imc    float32 `json:"imc"`
+	Peso   float64 `json:"peso"`
+	Altura float64 `json:"altura"`
+	Imc    float64 `json:"imc"`
 	collection *mongo.Collection
 }
 
@@ -41,11 +42,26 @@ func (p *Pessoa) createIndex() error {
 	return err
 }
 
+func (p *Pessoa) ValidaPessoa() error {
+	if p.Nome == "" {
+		return errors.New("o nome da pessoa não informado")
+	} else if p.Peso == 0 {
+		return errors.New("o peso da pessoa não informado")
+	} else if p.Altura == 0 {
+		return errors.New("a altura da pessoa não informado")
+	} else if p.Sexo != "F" && p.Sexo != "M"  {
+		return errors.New("o sexo da pessoa não informado corretamente [F/M]")
+	}
+	return nil
+}
+
 // Adiciona uma pessoa
 func (p *Pessoa) Create() error {
-	if p.Nome == "" {
-		return errors.New("nome da pessoa não informado para edição")
+	errVal := p.ValidaPessoa()
+	if errVal != nil {
+		return errVal
 	}
+	p.Imc = utils.CalculaImc(p.Peso, p.Altura)
 	_, err := p.collection.InsertOne(context.TODO(), p)
 	return err
 }
@@ -53,7 +69,7 @@ func (p *Pessoa) Create() error {
 // Faz a leitura de uma pessoa a partir do nome
 func (p *Pessoa) Read(nome string) error {
 	if nome == "" {
-		return errors.New("nome da pessoa não informado para consulta")
+		return errors.New("nome da pessoa não informado para edição")
 	}
 	filtro := getFilter(nome)
 	return p.collection.FindOne(context.TODO(), filtro).Decode(p)
@@ -61,9 +77,14 @@ func (p *Pessoa) Read(nome string) error {
 
 // Atualiza os dados de uma pessoa utilizando outra pessoa recebida por parâmetro
 func (p *Pessoa) Update(nome string, newPessoa *Pessoa) (*Pessoa, error) {
-	if nome == "" || newPessoa.Nome == "" {
+	if nome == "" {
 		return nil, errors.New("nome da pessoa não informado para edição")
 	}
+	errVal := p.ValidaPessoa()
+	if errVal != nil {
+		return nil, errVal
+	}
+	newPessoa.Imc = utils.CalculaImc(newPessoa.Peso, newPessoa.Altura)
 	filtro := getFilter(nome)
 	dados := bson.D{primitive.E{Key: "$set", Value: &newPessoa}}
 	_, err := p.collection.UpdateOne(context.TODO(), filtro, dados)
