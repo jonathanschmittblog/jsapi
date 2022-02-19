@@ -8,6 +8,8 @@ Requisitos de funcionamento:
 - Um server RabbitMQ
 - Configurar as variáveis de ambiente
 
+
+
 Exêmplo de configuração das variáveis de ambiente:
 
 JSAPI_HOST=http://localhost
@@ -21,6 +23,8 @@ JSAPI_MONGODB_USER=root
 JSAPI_MONGODB_PASS=MySecret
 
 JSAPI_MONGODB_DB_NAME=mydbname
+
+
 
 Endspoints disponíveis:
 - Get
