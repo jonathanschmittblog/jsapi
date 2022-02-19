@@ -19,7 +19,7 @@ Depois de instalar o Docker, utilize os comandos:
 Para rodar os testes unitários, utilize os comandos:
 - docker exec api go test -run ./...
 
-Endspoints disponíveis:
+Endpoints disponíveis:
 - Post: \pessoas
 - Get: \pessoas\:nome_da_pessoa
 - Put: \pessoas\:nome_da_pessoa
