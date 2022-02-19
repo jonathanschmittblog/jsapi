@@ -11,7 +11,7 @@ func CreatePessoa(c *gin.Context) {
 	// Cria um novo objeto da pessoa para incluir
 	pessoa, err := pessoas.New()
 	if err != nil {
-		c.JSON(500, 0)
+		c.String(500, err.Error())
 		return 
 	}
 	// Recebe os novos dados da pessoa do body da requisição
@@ -37,7 +37,7 @@ func UpdatePessoa(c *gin.Context) {
 	// Cria um objeto para a pessoa que será alterada
 	pessoa, err := pessoas.New()
 	if err != nil {
-		c.JSON(500, 0)
+		c.String(500, err.Error())
 		return 
 	}
 	// Recebe os novos dados da pessoa do body da requisição
@@ -63,7 +63,7 @@ func GetPessoa(c *gin.Context) {
 	// Cria um objeto para a pessoa que será alterada
 	pessoa, err := pessoas.New()
 	if err != nil {
-		c.JSON(500, 0)
+		c.String(500, err.Error())
 		return 
 	}
 	// Faz a leitura do json da pessoa pelo nome
@@ -87,7 +87,7 @@ func DeletePessoa(c *gin.Context) {
 	// Cria um objeto para a pessoa que será alterada
 	pessoa, err := pessoas.New()
 	if err != nil {
-		c.JSON(500, 0)
+		c.String(500, err.Error())
 		return 
 	}
 	// Faz a leitura do json da pessoa pelo nome
