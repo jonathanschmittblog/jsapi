@@ -1,5 +1,4 @@
-# jsapi
-- Modelo de API Go + MongoDB + RabbitMQ + Docker
+# JSAPI | Modelo de API Go + MongoDB + RabbitMQ + Docker
 
 Olá, seja bem-vindo a minha API Go.
 
