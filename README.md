@@ -21,9 +21,9 @@ A aplicação está configurada para rodar em com Docker.
 
 # Endpoints disponíveis:
 - Post: \pessoas
-- Get: \pessoas\:nome_da_pessoa
-- Put: \pessoas\:nome_da_pessoa
-- Delete: \pessoas\:nome_da_pessoa
+- Get: \pessoas\ :nome_da_pessoa
+- Put: \pessoas\ :nome_da_pessoa
+- Delete: \pessoas\ :nome_da_pessoa
 
 # Estrutura da Pessoa:
 {"nome": "Viviane", "sexo": "F", "peso": 68.15, "altura": 1.59, "imc": 26,957}
