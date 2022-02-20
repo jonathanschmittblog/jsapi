@@ -17,7 +17,7 @@ RabbitMQ:
 - RABBITMQ_DEFAULT_USER: "guest"
 - RABBITMQ_DEFAULT_PASS: "guest"
 JSAPI:
-- JSAPI_HOST: "http://localhost"
+- - JSAPI_HOST: "http://localhost"
 - JSAPI_PORT: "3000"
 - JSAPI_RABBITMQ_DIAL: "amqp://guest:guest@rabbitmq:5672/"
 - JSAPI_MONGODB_URI: "mongodb://root:Secret123@mongodb:27017/?retryWrites=true&w=majority"
