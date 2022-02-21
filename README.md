@@ -30,6 +30,7 @@ As variáveis de ambiente podem ser populadas no arquivo docker-compose.yml nas 
 # Comando para rodar a aplicação com Docker:
 - $ docker compose build
 - $ docker compose run --rm api go mod init github.com/jonathanschmittblog/jsapi
+- $ docker compose run --rm api-ws go mod init github.com/jonathanschmittblog/jsapi-websocket
 - $ docker compose run --rm api air init
 - $ docker compose up
 
