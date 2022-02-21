@@ -43,4 +43,5 @@ As variáveis de ambiente podem ser populadas no arquivo docker-compose.yml nas 
 - Delete: \pessoas\ :nome_da_pessoa
 
 # Estrutura da Pessoa:
-{"nome": "Viviane", "sexo": "F", "peso": 68.15, "altura": 1.59, "imc": 26,957}
+- Obs.: O nome da pessoa não pode repetir
+- {"nome": "Viviane", "sexo": "F", "peso": 68.15, "altura": 1.59, "imc": 26,957}
