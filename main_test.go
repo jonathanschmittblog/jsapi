@@ -31,37 +31,40 @@ func TestPessoa(t *testing.T) {
 }
 
 func createPessoa(pessoa *pessoas.Pessoa, t *testing.T) {
-	if utils.HttpPost(getHost() + "/pessoas", pessoa) != 200 {
-		t.Error("Erro ao criar pessoa.")
+	err := utils.HttpPost(getHost() + "/pessoas", pessoa)
+	if err != nil {
+		t.Error("Erro ao criar pessoa." + err.Error())
 	}
 }
 
 func updatePessoa(nomePessoa string, pessoa *pessoas.Pessoa, t *testing.T) {
 	pessoa.Nome = "Test 321"
-	if utils.HttpPut(getHost() + "/pessoas/" + nomePessoa, &pessoa) != 200 {
-		t.Error("Erro ao editar pessoa.")
+	err := utils.HttpPut(getHost() + "/pessoas/" + nomePessoa, &pessoa)
+	if err != nil {
+		t.Error("Erro ao editar pessoa." + err.Error())
 	}
 }
 
 func deletePessoa(nome string, t *testing.T) {
-	if utils.HttpDelete(getHost() + "/pessoas/" + nome) != 200 {
-		t.Error("Erro ao editar pessoa.")
+	err := utils.HttpDelete(getHost() + "/pessoas/" + nome)
+	if err != nil {
+		t.Error("Erro ao editar pessoa." + err.Error())
 	}
 }
 
 func getPessoa(nome string, t *testing.T) (*pessoas.Pessoa, error) {
-	status, body := utils.HttpGet(getHost() + "/pessoas/" + nome) 
-	if status != 200 {
-		t.Error("Erro ao consultar pessoa.")
+	body, err := utils.HttpGet(getHost() + "/pessoas/" + nome) 
+	if err != nil {
+		t.Error("Erro ao consultar pessoa." + err.Error())
 		return nil, errors.New("Erro ao consultar pessoa.")
 	}
 	pessoa, err := pessoas.New()
 	if err != nil {
-		return nil, errors.New("Erro ao criar um objeto de Pessoa.")
+		return nil, errors.New("Erro ao criar um objeto de Pessoa." + err.Error())
 	}
 	err = json.Unmarshal(body, &pessoa)
 	if err != nil {
-		return nil, errors.New("Erro ao ler retorno da consulta de pessoa.")
+		return nil, errors.New("Erro ao ler retorno da consulta de pessoa." + err.Error())
 	}
 	return pessoa, nil
 }

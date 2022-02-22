@@ -29,51 +29,51 @@ func postBody(obj interface{}) *bytes.Buffer {
 	return bytes.NewBuffer(postBody)
 }
 
-func HttpPost(url string, obj interface{}) int {
-	resp, err := http.Post(url, "application/json", postBody(obj))
+func HttpPost(url string, obj interface{}) error {
+	_, err := http.Post(url, "application/json", postBody(obj))
 	if err != nil {
-		return 0
+		return err
 	}
-	return resp.StatusCode
+	return nil
 }
 
-func HttpGet(url string) (int, []byte) {
+func HttpGet(url string) ([]byte, error) {
 	resp, err := http.Get(url)
 	if err != nil {
-		return 0, nil
+		return nil, err
 	}
 	bd, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return 0, nil
+		return nil, err
 	}
-	return resp.StatusCode, bd
+	return bd, nil
 }
 
-func HttpPut(url string, obj interface{}) int {
+func HttpPut(url string, obj interface{}) error {
 	client := &http.Client{}
 	req, err := http.NewRequest(http.MethodPut, url, postBody(&obj))
 	if err != nil {
-		return 0
+		return err
 	}
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-	resp, err := client.Do(req)
+	_, err = client.Do(req)
 	if err != nil {
-		return 0
+		return err
 	}
-	return resp.StatusCode
+	return nil
 }
 
-func HttpDelete(url string) int {
+func HttpDelete(url string) error {
 	client := &http.Client{}
 	req, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {
-		return 0
+		return err
 	}
-	resp, err := client.Do(req)
+	_, err = client.Do(req)
 	if err != nil {
-		return 0
+		return err
 	}
-	return resp.StatusCode
+	return err
 }
 
 func CalculaImc(peso float64, altura float64) float64 {
