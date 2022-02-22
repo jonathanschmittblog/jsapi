@@ -17,17 +17,17 @@ A aplicação está configurada para rodar em com Docker.
 # Configurando a aplicação
 As variáveis de ambiente podem ser populadas no arquivo docker-compose.yml nas seções "environment".
 - RabbitMQ:
-  - RABBITMQ_DEFAULT_USER: "guest"
-  - RABBITMQ_DEFAULT_PASS: "guest"
+  - RABBITMQ_DEFAULT_USER: "jsuser"
+  - RABBITMQ_DEFAULT_PASS: "jspass"
 - JSAPI:
   - JSAPI_HOST: "http://localhost"
   - JSAPI_PORT: "3000"
-  - JSAPI_RABBITMQ_DIAL: "amqp://guest:guest@rabbitmq:5672/"
+  - JSAPI_RABBITMQ_DIAL: "amqp://jsuser:jspass@rabbitmq:5672/"
   - JSAPI_MONGODB_URI: "mongodb://root:Secret123@mongodb:27017/?retryWrites=true&w=majority"
   - JSAPI_MONGODB_DB_NAME: "jsapidb"
 - JSAPI-WEBSOCKET:
   - JSAPIWS_PORT: "3001"
-  - JSAPIWS_RABBITMQ_DIAL: "amqp://guest:guest@rabbitmq:5672/"
+  - JSAPIWS_RABBITMQ_DIAL: "amqp://jsuser:jspass@rabbitmq:5672/"
 - MongoDB:
   - MONGO_INITDB_ROOT_USERNAME: "root"
   - MONGO_INITDB_ROOT_PASSWORD: "Secret123"
