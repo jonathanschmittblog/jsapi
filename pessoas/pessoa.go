@@ -58,7 +58,7 @@ func (p *Pessoa) ValidaPessoa() error {
 // Adiciona uma pessoa
 func (p *Pessoa) Create() error {
 	errVal := p.ValidaPessoa()
-	if errVal != nil {
+	if errVal != nil && errVal.Error() != "" {
 		return errVal
 	}
 	p.Imc = utils.CalculaImc(p.Peso, p.Altura)
@@ -81,7 +81,7 @@ func (p *Pessoa) Update(nome string, newPessoa *Pessoa) (*Pessoa, error) {
 		return nil, errors.New("nome da pessoa não informado para edição")
 	}
 	errVal := p.ValidaPessoa()
-	if errVal != nil {
+	if errVal != nil && errVal.Error() != "" {
 		return nil, errVal
 	}
 	newPessoa.Imc = utils.CalculaImc(newPessoa.Peso, newPessoa.Altura)
