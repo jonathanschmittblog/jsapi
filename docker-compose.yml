@@ -22,16 +22,14 @@ services:
       MONGO_INITDB_DATABASE: "jsapi"
     restart: always
   jsapi:
-    container_name: api-server
     depends_on:
       - mongodb
       - rabbitmq
     build:
       dockerfile: Dockerfile
       context: .
-      target: dev
     volumes:
-      - .:/opt/app/api
+      - .:/opt/app/jsapi
     environment:
       JSAPI_HOST: "http://localhost"
       JSAPI_PORT: "3000"
@@ -40,3 +38,14 @@ services:
       JSAPI_MONGODB_DB_NAME: "jsapidb"
     ports:
       - "3000:3000"
+  jsapi-websocket:
+    build:
+      dockerfile: Dockerfile_ws
+      context: .
+    volumes:
+      - .:/opt/app/jsapi-websocket
+    environment:
+      JSAPIWS_PORT: "3001"
+      JSAPIWS_RABBITMQ_DIAL: "amqp://jsuser:jspass@rabbitmq:5672/"
+    ports:
+      - "3001:3001"
