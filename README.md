@@ -22,6 +22,9 @@ As variáveis de ambiente podem ser populadas no arquivo docker-compose.yml nas 
   - JSAPI_RABBITMQ_DIAL: "amqp://guest:guest@rabbitmq:5672/"
   - JSAPI_MONGODB_URI: "mongodb://root:Secret123@mongodb:27017/?retryWrites=true&w=majority"
   - JSAPI_MONGODB_DB_NAME: "jsapidb"
+- JSAPI-WEBSOCKET:
+  - JSAPIWS_PORT: "3001"
+  - JSAPIWS_RABBITMQ_DIAL: "amqp://guest:guest@rabbitmq:5672/"
 - MongoDB:
   - MONGO_INITDB_ROOT_USERNAME: "root"
   - MONGO_INITDB_ROOT_PASSWORD: "Secret123"
