@@ -38,7 +38,7 @@ As variáveis de ambiente podem ser populadas no arquivo docker-compose.yml nas 
 - $ docker compose up
 
 # Comando para rodar os testes unitários da aplicação com Docker:
-- docker exec api go test -run ./...
+- $ docker exec api-server go test
 
 # Endpoints disponíveis:
 - Post: \pessoas
