@@ -30,10 +30,8 @@ func postBody(obj interface{}) *bytes.Buffer {
 }
 
 func HttpPost(url string, obj interface{}) int {
-	println("url:" + url)
 	resp, err := http.Post(url, "application/json", postBody(obj))
 	if err != nil {
-		println(err.Error())
 		return 0
 	}
 	return resp.StatusCode
