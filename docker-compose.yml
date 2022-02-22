@@ -40,7 +40,6 @@ services:
     ports:
       - "3000:3000"
   jsapi-websocket:
-    container_name: api-websocket
     build:
       dockerfile: Dockerfile_ws
       context: .
