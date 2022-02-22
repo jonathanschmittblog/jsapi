@@ -3,7 +3,7 @@
 Olá, seja bem-vindo a minha API Go.
 O objetivo desta API é armazenar dados de pessoas em uma collection MongoDB e a cada requisição informar com uma mensagem em uma fila RabbitMQ chamada "pessoas".
 
-Esta aplicação depende do outro projeto (jsapi) para exibir as mensagens.
+Esta aplicação utiliza do outro projeto (jsapi-websocket) para exibir as mensagens do RabbitMQ no navegador.
 - https://github.com/jonathanschmittblog/jsapi
 
 A aplicação está configurada para rodar em com Docker.
