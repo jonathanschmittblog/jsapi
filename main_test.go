@@ -15,6 +15,9 @@ func TestPessoa(t *testing.T) {
 		t.Error("Erro ao instanciar objeto do tipo Pessoa.")
 	}
 	pessoa.Nome = "Test 123"
+	pessoa.Altura = 1.70
+	pessoa.Peso = 68
+	pessoa.Sexo = "M"
 	createPessoa(pessoa, t)
 	updatePessoa(pessoa.Nome, pessoa, t)
 	pessoa2, err := getPessoa(pessoa.Nome, t)
