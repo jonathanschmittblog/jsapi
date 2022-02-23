@@ -5,6 +5,8 @@
 *.so
 *.dylib
 *.toml
+*.mod
+*.sum
 
 # Test binary, built with `go test -c`
 # *.test
