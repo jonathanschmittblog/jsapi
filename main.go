@@ -11,6 +11,6 @@ func main() {
 		println("Não foi possível iniciar o servidor. Verifique as variáveis de ambiente.")
 		return
 	}
-	routers.ApplyAccountRoutes(server)
+	routers.ApplyRoutes(server)
 	server.Start()
 }
