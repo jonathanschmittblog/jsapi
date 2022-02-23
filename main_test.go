@@ -28,6 +28,10 @@ func TestPessoa(t *testing.T) {
 		t.Error("Retorno inesperado na consulta de pessoa.")
 	}
 	deletePessoa(pessoa.Nome, t)
+	_, err = getPessoa(pessoa.Nome, t)
+	if err == nil {
+		t.Error("Não deveria ter retornado a pessoa na consulta.")
+	}
 }
 
 func createPessoa(pessoa *pessoas.Pessoa, t *testing.T) {
