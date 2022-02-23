@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   rabbitmq:
+    container_name: rabbitmq-1
     image: "rabbitmq:3-management"
     environment:
       RABBITMQ_DEFAULT_USER: "jsuser"
@@ -22,7 +23,7 @@ services:
       MONGO_INITDB_DATABASE: "jsapi"
     restart: always
   jsapi:
-    container_name: api-server
+    container_name: jsapi-1
     depends_on:
       - mongodb
       - rabbitmq
@@ -40,6 +41,7 @@ services:
     ports:
       - "3000:3000"
   jsapi-websocket:
+    container_name: jsapi-websocket-1
     build:
       dockerfile: Dockerfile_ws
       context: .
