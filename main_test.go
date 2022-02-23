@@ -12,7 +12,7 @@ import (
 func TestPessoa(t *testing.T) {
 	pessoa, err := pessoas.New()
 	if err != nil {
-		t.Error("Erro ao instanciar objeto do tipo Pessoa.")
+		t.Error("Erro ao instanciar objeto do tipo Pessoa. Erro: " + err.Error())
 	}
 	pessoa.Nome = "Test 123"
 	pessoa.Altura = 1.70
@@ -22,7 +22,7 @@ func TestPessoa(t *testing.T) {
 	updatePessoa(pessoa.Nome, pessoa, t)
 	pessoa2, err := getPessoa(pessoa.Nome, t)
 	if err != nil {
-		return
+		t.Error("Retorno inesperado na consulta de pessoa. Erro:" + err.Error())
 	}
 	if pessoa2.Nome != pessoa.Nome {
 		t.Error("Retorno inesperado na consulta de pessoa.")
@@ -33,7 +33,7 @@ func TestPessoa(t *testing.T) {
 func createPessoa(pessoa *pessoas.Pessoa, t *testing.T) {
 	err := utils.HttpPost(getHost() + "/pessoas", pessoa)
 	if err != nil {
-		t.Error("Erro ao criar pessoa." + err.Error())
+		t.Error("Erro ao criar pessoa. Erro:" + err.Error())
 	}
 }
 
@@ -41,22 +41,22 @@ func updatePessoa(nomePessoa string, pessoa *pessoas.Pessoa, t *testing.T) {
 	pessoa.Nome = "Test 321"
 	err := utils.HttpPut(getHost() + "/pessoas/" + nomePessoa, &pessoa)
 	if err != nil {
-		t.Error("Erro ao editar pessoa." + err.Error())
+		t.Error("Erro ao editar pessoa. Erro:" + err.Error())
 	}
 }
 
 func deletePessoa(nome string, t *testing.T) {
 	err := utils.HttpDelete(getHost() + "/pessoas/" + nome)
 	if err != nil {
-		t.Error("Erro ao editar pessoa." + err.Error())
+		t.Error("Erro ao editar pessoa. Erro:" + err.Error())
 	}
 }
 
 func getPessoa(nome string, t *testing.T) (*pessoas.Pessoa, error) {
 	body, err := utils.HttpGet(getHost() + "/pessoas/" + nome) 
 	if err != nil {
-		t.Error("Erro ao consultar pessoa." + err.Error())
-		return nil, errors.New("Erro ao consultar pessoa.")
+		t.Error("Erro ao consultar pessoa. Erro:" + err.Error())
+		return nil, errors.New("Erro ao consultar pessoa. Erro:" + err.Error())
 	}
 	pessoa, err := pessoas.New()
 	if err != nil {
