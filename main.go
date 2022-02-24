@@ -2,8 +2,9 @@ package main
 
 import (
 	"flag"
-	"jsapi/routers"
-	"jsapi/servers"
+
+	"github.com/jonathanschmittblog/jsapi/routers"
+	"github.com/jonathanschmittblog/jsapi/servers"
 )
 
 func main() {

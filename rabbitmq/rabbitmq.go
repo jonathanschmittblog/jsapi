@@ -1,8 +1,9 @@
 package rabbitmq
 
 import (
-	"jsapi/utils"
 	"os"
+
+	"github.com/jonathanschmittblog/jsapi/utils"
 
 	"github.com/streadway/amqp"
 )

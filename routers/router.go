@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"jsapi/servers"
+	"github.com/jonathanschmittblog/jsapi/servers"
 )
 
 func ApplyRoutes(server *servers.Server) {

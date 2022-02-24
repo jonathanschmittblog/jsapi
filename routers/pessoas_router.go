@@ -1,10 +1,9 @@
 package routers
 
 import (
-	"jsapi/pessoas"
-	"jsapi/rabbitmq"
-
 	"github.com/gin-gonic/gin"
+	"github.com/jonathanschmittblog/jsapi/pessoas"
+	"github.com/jonathanschmittblog/jsapi/rabbitmq"
 )
 
 func CreatePessoa(c *gin.Context) {

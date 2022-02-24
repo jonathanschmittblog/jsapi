@@ -3,8 +3,9 @@ package pessoas
 import (
 	"context"
 	"errors"
-	"jsapi/db"
-	"jsapi/utils"
+
+	"github.com/jonathanschmittblog/jsapi/db"
+	"github.com/jonathanschmittblog/jsapi/utils"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

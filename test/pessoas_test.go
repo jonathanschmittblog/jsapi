@@ -3,10 +3,11 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"jsapi/pessoas"
-	"jsapi/utils"
 	"os"
 	"testing"
+
+	"github.com/jonathanschmittblog/jsapi/pessoas"
+	"github.com/jonathanschmittblog/jsapi/utils"
 )
 
 func TestPessoa(t *testing.T) {
