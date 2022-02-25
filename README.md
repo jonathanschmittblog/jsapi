@@ -34,7 +34,8 @@ As variáveis de ambiente podem ser populadas no arquivo docker-compose.yml nas 
   - MONGO_INITDB_DATABASE: "jsapi"
 
 # Comando para rodar a aplicação com Docker:
-- $ docker compose up --no-cache
+- $ docker compose build --no-cache
+- $ docker compose up
 
 # Comando para rodar os testes unitários da aplicação:
 - $ docker exec jsapi-1 go test -v ./test
