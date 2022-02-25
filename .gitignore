@@ -18,3 +18,4 @@
 # vendor/
 mongo-volume/
 tmp/
+public/
