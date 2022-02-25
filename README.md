@@ -48,4 +48,4 @@ As variáveis de ambiente podem ser populadas no arquivo docker-compose.yml nas 
 
 # Estrutura da Pessoa:
 - Obs.: O nome da pessoa não pode repetir
-- {"nome": "Viviane", "sexo": "F", "peso": 68.15, "altura": 1.59, "imc": 26,957}
+- {"nome": "Fulano", "sexo": "M", "peso": 68.15, "altura": 1.59, "imc": 26,957}
