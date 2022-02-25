@@ -30,8 +30,9 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
+    command: jsapi
     volumes:
-      - .:/opt/app/jsapi
+      - .:/go/src/jsapi
     environment:
       JSAPI_HOST: "http://localhost"
       JSAPI_PORT: "3000"
@@ -42,11 +43,14 @@ services:
       - "3000:3000"
   jsapi-websocket:
     container_name: jsapi-websocket-1
+    depends_on:
+      - rabbitmq
     build:
       dockerfile: Dockerfile_ws
       context: .
+    command: jsapi-websocket
     volumes:
-      - .:/opt/app/jsapi-websocket
+      - .:/go/src/jsapi-websocket
     environment:
       JSAPIWS_PORT: "3001"
       JSAPIWS_RABBITMQ_DIAL: "amqp://jsuser:jspass@rabbitmq:5672/"
